@@ -9,7 +9,7 @@ const Meals = () => {
       <MealsSummary />
       <AvailableMeals />
     </Fragment>
-  )
-}
+  );
+};
 
-export default Meals
+export default Meals;
