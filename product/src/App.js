@@ -1,31 +1,37 @@
+import React, { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Welcome from './pages/Welcome';
-import Products from './pages/Products';
-import ProductDetail from './pages/ProductDetail';
-import MainHeader from './components/MainHeader';
+import Layout from './components/layout/Layout';
+import LoadingSpinner from './components/UI/LoadingSpinner';
+
+const NewQuote = React.lazy(() => import('./pages/NewQuote'));
+const QuoteDetail = React.lazy(() => import('./pages/QuoteDetail'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+const AllQuotes = React.lazy(() => import('./pages/AllQuotes'));
 
 function App() {
   return (
-    <div>
-      <MainHeader />
-      <main>
+    <Layout>
+      <Suspense fallback={<div className='centered'><LoadingSpinner /></div>}>
         <Switch>
-        <Route path='/' exact>
-          <Redirect to='/welcome' />
-        </Route>
-          <Route path="/welcome">
-            <Welcome />
+          <Route path='/' exact>
+            <Redirect to='/quotes' />
           </Route>
-          <Route path="/products" exact>
-            <Products />
+          <Route path='/quotes' exact>
+            <AllQuotes />
           </Route>
-          <Route path="/products/:productId">
-            <ProductDetail />
+          <Route path='/quotes/:quoteId'>
+            <QuoteDetail />
+          </Route>
+          <Route path='/new-quote'>
+            <NewQuote />
+          </Route>
+          <Route path='*'>
+            <NotFound />
           </Route>
         </Switch>
-      </main>
-    </div>
+      </Suspense>
+    </Layout>
   );
 }
 
