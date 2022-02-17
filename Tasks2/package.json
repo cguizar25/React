@@ -9,6 +9,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+<<<<<<< HEAD:Tasks2/package.json
+=======
+    "react-router-dom": "^5.2.0",
+>>>>>>> productUpdate:Authentication/package.json
     "web-vitals": "^0.2.4"
   },
   "scripts": {
